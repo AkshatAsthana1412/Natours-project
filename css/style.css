@@ -1,0 +1,229 @@
+/* COLORS:
+
+Light Green: #7ed56f
+Medium Green: #55c57a
+Dark Green: #28b485 
+
+*/
+
+*,
+*::after,                  /*This needs to be set explicitly for ::before and ::after pseudo elements */
+*::before{
+    margin: 0;
+    padding: 0;
+    box-sizing: inherit;   /*It's good practice to set it to inherit for all elements 
+                           so if we ever want to change this property for some third party plugins
+                           we can simply set this property on the body element */
+}
+
+
+/* It's best to set all lengths and sizes using rem because to make things responsive we now simply 
+change the font-size using the required media-queries. Besides it's very easy working with the rem units
+cause they only depend on the font-size of root element */
+
+/*To convert px units into rems simply divide the pixel value with the root font-size */
+
+html{
+    /* font-size: 10px; */
+    font-size: 62.5%;     /*i.e. (10/16 * 100) 16px is the default font-size for browsers
+                          for more info refer the udemy video on advanced css practices */
+}
+
+body{
+    position: relative;
+    font-family: 'Lato', sans-serif;
+    font-weight: 400;
+    font-size: 1.6rem;
+    padding: 3rem;
+    line-height: 1.7;
+    color: #777;
+    box-sizing: border-box;
+}
+
+.header{
+    height: 95vh;
+    background-image: linear-gradient(
+        to right bottom,
+         rgba(126, 213, 111, 0.7),
+         rgba(40, 180, 131, 0.8)),
+    url('../img/hero.jpg');
+    background-size: cover;
+    background-position: top;
+    clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%);
+}
+
+.logo-box{
+    position: absolute;
+    left: 4rem;
+    top: 4rem;
+}
+
+.logo{
+    height: 3.5rem;
+}
+
+.logo:hover{
+    animation: rotate 1s ease-out
+}
+
+.heading-primary{
+    color: #fff;
+    text-transform: uppercase;
+    margin-bottom: 6rem;
+}
+
+.heading-primary-main{
+    display: block;
+    font-size: 6rem;
+    font-weight: 400;
+    letter-spacing: 3.5rem;
+    animation-name: moveInLeft;
+    animation-duration: 1s;
+    animation-timing-function: ease-out;
+}
+
+.heading-primary-sub{
+    display: block;
+    font-size: 2rem;
+    font-weight: 700;
+    letter-spacing: 1.75rem;
+    animation-name: moveInRight;
+    animation-duration: 1s;
+    animation-timing-function: ease-out;
+}
+
+.text-box{
+    text-align: center;
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+@keyframes moveInLeft{
+
+    0%{
+        opacity: 0;
+        transform: translate(-10rem);
+    }
+
+    80%{
+        transform: translate(1rem);
+    }
+
+    100%{
+        opacity: 1;
+        transform: translate(0);
+    }
+
+}
+
+@keyframes moveInRight{
+
+    0%{
+        opacity: 0;
+        transform: translate(10rem);
+    }
+
+    80%{
+        transform: translate(-1rem);
+    }
+
+    100%{
+        opacity: 1;
+        transform: translate(0);
+    }
+
+}
+
+@keyframes rotate{
+
+    0%{
+
+    }
+
+    25%{
+        opacity: 0.75;
+        transform: rotate3d(0,1,0,90deg);
+    }
+
+    50%{
+        opacity: 0.5;
+        transform: rotate3d(0,1,180deg);
+    }
+
+    75%{
+        opacity: 0.75;
+        transform: rotate3d(0,1,0,270deg);
+    }
+
+    100%{
+        opacity: 1;
+        transform: rotate3d(0,1,0,360deg);
+    }
+}
+
+@keyframes moveInBottom{
+    0%{
+        opacity: 0;
+        transform: translateY(10rem);
+    }
+
+    100%{
+        opacity: 100%;
+        transform: translate(0);
+    }
+}
+
+.btn:link,
+.btn:visited{
+    text-transform: uppercase;
+    text-decoration: none;
+    display: inline-block;
+    border-radius: 10rem;
+    padding: 1.5rem 4rem;
+    transition: all 0.2s;
+    position: relative;
+}
+
+.btn:hover{
+    transform: translateY(-.3rem);
+    box-shadow: 0 1rem 2rem rgba(0,0,0,0.2);
+}
+
+.btn:active{
+    transform: translate(-.1rem);
+    box-shadow: 0 .5rem 1rem rgba(0, 0, 0, 0.2);
+}
+
+.btn-white{
+    background-color: #fff;
+    color: #777;
+}
+
+.btn::after{
+    content: "";
+    display: inline-block;
+    height: 100%;
+    width: 100%;
+    border-radius: 10rem;
+    z-index: -1;
+    position: absolute;
+    top: 0;
+    left: 0;
+    transition: all 0.4s;
+}
+
+.btn-white::after{
+    background-color: #fff;
+}
+
+.btn:hover::after{
+    opacity: 0;
+    transform: scaleX(1.5) scaleY(1.4);
+}
+
+.btn-animated{
+    animation: moveInBottom 0.8s ease-out 0.5s;
+    animation-fill-mode: backwards;
+}
